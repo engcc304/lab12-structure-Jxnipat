@@ -84,14 +84,91 @@
     ID: 103
     Scores: 77 74 76 81 69
     Grades: B+  B B+  A C+
-    Average Scores: 75.4
+    Average Scores: 75.4jnp
 */
 
 #include <stdio.h>
 
+struct Student {
+    char Name[20];
+    char ID[5];
+    float ScoreSub1;
+    float ScoreSub2;
+    float ScoreSub3;
+    float ScoreSub4;
+    float ScoreSub5;
+};
+
+typedef struct Student S;
+
+// Function to calculate the grade based on the score
+char calculateGrade(float score) {
+    if (score >= 90) {
+        return 'A';
+    } else if (score >= 80) {
+        return 'B';
+    } else if (score >= 70) {
+        return 'C';
+    } else if (score >= 60) {
+        return 'D';
+    } else {
+        return 'F';
+    }
+}
+
+void calculateGradesAndAverage(S student) {
+    printf("Name: %s\n", student.Name);
+    printf("ID: %s\n", student.ID);
+    printf("Scores: %.2f %.2f %.2f %.2f %.2f\n",
+           student.ScoreSub1, student.ScoreSub2, student.ScoreSub3,
+           student.ScoreSub4, student.ScoreSub5);
+
+    // Calculate average score
+    float average = (student.ScoreSub1 + student.ScoreSub2 +
+                     student.ScoreSub3 + student.ScoreSub4 +
+                     student.ScoreSub5) / 5.0;
+    printf("Average Scores: %.1f\n", average);
+
+    // Calculate and display grades for each subject
+    printf("Grades: ");
+    printf("%c %c %c %c %c\n",
+           calculateGrade(student.ScoreSub1),
+           calculateGrade(student.ScoreSub2),
+           calculateGrade(student.ScoreSub3),
+           calculateGrade(student.ScoreSub4),
+           calculateGrade(student.ScoreSub5));
+    printf("\n");
+}
+
 int main() {
+    S students[3];
 
-    //--| YOUR CODE HERE
+    printf("Enter the details of 3 students:\n");
 
-    return 0 ;
-}//end main function
+    for (int i = 0; i < 3; i++) {
+        printf("Student %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", students[i].Name);
+        printf("ID: ");
+        scanf("%s", students[i].ID);
+        printf("Scores in Subject 1: ");
+        scanf("%f", &students[i].ScoreSub1);
+        printf("Scores in Subject 2: ");
+        scanf("%f", &students[i].ScoreSub2);
+        printf("Scores in Subject 3: ");
+        scanf("%f", &students[i].ScoreSub3);
+        printf("Scores in Subject 4: ");
+        scanf("%f", &students[i].ScoreSub4);
+        printf("Scores in Subject 5: ");
+        scanf("%f", &students[i].ScoreSub5);
+    }
+
+    printf("Student Details:\n");
+
+    for (int i = 0; i < 3; i++) {
+        printf("Student %d:\n", i + 1);
+        calculateGradesAndAverage(students[i]);
+    }
+
+    return 0;
+}
