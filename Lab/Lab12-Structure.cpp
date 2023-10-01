@@ -103,18 +103,24 @@ typedef struct Student S;
 
 // Function to calculate the grade based on the score
 char calculateGrade(float score) {
-    if (score >= 90) {
-        return 'A';
-    } else if (score >= 80) {
-        return 'B';
+       if (score >= 80) {
+        printf("A");
+    } else if (score >= 75) {
+        printf("B+");
     } else if (score >= 70) {
-        return 'C';
+        printf("B");
+    } else if (score >= 65) {
+        printf("C+");
     } else if (score >= 60) {
-        return 'D';
+        printf("C");
+    } else if (score >= 55) {
+        printf("D+");
+    } else if (score >= 50) {
+        printf("D");
     } else {
-        return 'F';
+        printf("F");
     }
-}
+
 
 void calculateGradesAndAverage(S student) {
     printf("Name: %s\n", student.Name);
